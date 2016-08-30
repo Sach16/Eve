@@ -22,6 +22,7 @@ import com.google.gson.GsonBuilder;
 
 import eve.Application;
 import eve.models.Address;
+import eve.models.Attachments;
 import eve.models.City;
 import eve.models.CreatedAt;
 import eve.models.Evnts;
@@ -65,6 +66,11 @@ public class EvntsController {
 	@RequestMapping("/createdat")
 	public CreatedAt eventsCreatedAt() {
 		return new CreatedAt();
+	}
+	
+	@RequestMapping("/attachments")
+	public Attachments eventsAttachments() {
+		return new Attachments();
 	}
 
 	@RequestMapping("/delete")
