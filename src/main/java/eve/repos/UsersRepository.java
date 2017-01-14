@@ -9,11 +9,12 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 
 import eve.models.Evnts;
-import eve.models.Users;
+import eve.models.User;
 
-@RepositoryRestResource(collectionResourceRel = "users", path = "users")
-public interface UsersRepository extends MongoRepository<Users, Serializable>{
+@RepositoryRestResource(collectionResourceRel = "user", path = "user")
+public interface UsersRepository extends MongoRepository<User, Serializable>{
 
-	Users findByToken(@Param("token") String token);
-	List<Users> findAll();
+	User findByToken(@Param("token") String token);
+	User findByPhone(@Param("phone") String phone);
+	List<User> findAll();
 }
