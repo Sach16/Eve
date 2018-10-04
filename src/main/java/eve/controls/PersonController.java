@@ -58,9 +58,15 @@ public class PersonController {
 	
 	@RequestMapping(method = RequestMethod.DELETE)
 	public String peoplePatch(@RequestParam(value="whereId") String whereId) {
-		Person lPerson = (Person) repo.findByFirstName(whereId);
+		Person lPerson = (Person) (repo.findByFirstNameLikeIgnoreCase(whereId.toLowerCase()).get(0));
 		repo.delete(lPerson);
-		return "Deleted";
+		return String.format("%s are removed!", lPerson.getFirstName());
 	}
-	
+
+	@RequestMapping(value = "/deletelastname", method = RequestMethod.DELETE)
+	public String peopleDelete(@RequestParam(value="whereId") String whereId) {
+		Person lPerson = (Person) (repo.findByLastNameLikeIgnoreCase(whereId.toLowerCase()).get(0));
+		repo.delete(lPerson);
+		return String.format("%s, you are removed!", lPerson.getLastName());
+	}
 }

@@ -24,7 +24,7 @@ public class Address implements Serializable{
     private String alphaStreet;
     private String betaStreet;
     private City city;
-    private Integer cityId;
+    private Integer placeId;
     private String state;
     private String country;
     private Integer zip;
@@ -34,14 +34,14 @@ public class Address implements Serializable{
 	}
     
     public Address(String uuid, String email, String phone, String alphaStreet, String betaStreet,
-    		City city, int cityId, String state, String country, int zip){
+    		City city, int placeId, String state, String country, int zip){
     	this.uuid = uuid;
     	this.email = email;
     	this.phone = phone;
     	this.alphaStreet = alphaStreet;
     	this.betaStreet = betaStreet;
 //    	this.city = city;
-    	this.cityId = cityId;
+    	this.placeId = placeId;
     	this.state = state;
     	this.country = country;
     	this.zip = zip;

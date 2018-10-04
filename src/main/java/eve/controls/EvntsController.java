@@ -1,6 +1,7 @@
 package eve.controls;
 
 import java.awt.Event;
+import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -212,6 +213,42 @@ public class EvntsController {
 	 * 
 	 * }
 	 */
+
+	@RequestMapping(method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.CREATED)
+	public String eventsPut(@RequestHeader("Authorization") String authorization,
+							@RequestParam(value = "firstName") String firstName,
+							@RequestBody String json) {
+		try {
+			Address address = gsonHttp.getGson().fromJson(json, Address.class);
+			for (Evnts lEvnts2 : mEveRepo.findByFirstNameLike(firstName)) {
+				lEvnts2.setAddress(address);
+				mEveRepo.save(lEvnts2);
+			}
+			return "Success";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "Failure";
+		}
+	}
+
+	@RequestMapping(value = "/foodMenu", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.CREATED)
+	public String eventsfoodMenu(@RequestHeader("Authorization") String authorization,
+							@RequestParam(value = "firstName") String firstName,
+							@RequestBody String json) {
+		try {
+			FoodMenu foodMenu = gsonHttp.getGson().fromJson(json, FoodMenu.class);
+			for (Evnts lEvnts : mEveRepo.findByFirstNameLike(firstName)) {
+				lEvnts.setFoodMenu(Arrays.asList(foodMenu, foodMenu));
+				mEveRepo.save(lEvnts);
+			}
+			return "Success";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "Failure";
+		}
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
